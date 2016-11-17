@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Compiler Setup</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+					<div class="inner">
+					<section>
+							<div class="content">
+								<header>
+									<h2>Cross_compiler Setup</h2>
+									<p>for ARM</p>
+								</header>
+								<p>The installation is completed on a Ubuntu Linux PC. This is a tutorial on installing the complete toolchain to cross compile the Linux Kernel, Linux device drivers, or any Linux application for arm devices</p>
+								<ul class="actions">
+									<li><a href="https://www.ubuntu.com/" class="button">Ubuntu</a></li>
+								</ul>
+							</div>							
+					</section>
+					<section>
+						<div class="content">
+							<h3>Intallation</h3>
+							<p>Install the GCC, G++ cross compiles and their dependent programs by typing into the terminal</p>
+							<pre>
+								<code>
+$ sudo apt-get install libc6-armel-cross libc6-dev-armel-cross
+$ sudo apt-get install binutils-arm-linux-gnueabi
+$ sudo apt-get install libncurses5-dev
+$ sudo apt-get install gcc-arm-linux-gnueabi
+$ sudo apt-get install g++-arm-linux-gnueabi
+$ sudo apt-get install gcc-arm-linux-gnueabihf
+$ sudo apt-get install g++-arm-linux-gnueabihf
+								</code>
+							</pre>
+							<p>Now you are ready to cross compile on your PC</p>
+						</div>
+					</section>
+					<section>
+						<div class="content">
+							<h3>Testing for compiling C</h3>
+							<p>Lets try to compile a Hello World using this compiler.</p>
+							<pre>
+								<code>
+#include "stdio.h"
+
+int main (){
+	printf("Hello World!\n");
+	return 0;
+}
+								</code>
+							</pre>
+							<p>And compile it using</p>
+							<pre>
+								<code>
+$ arm-linux-gnueabi-gcc hello.c -o hello
+								</code>
+							</pre>
+							<p>Did it work? As we can see, we just used the ARM version of gcc to compile our code. <br>
+							   Next copy this compiled program on to your arm device (e.g. Rasberry Pi) and run it through command</p>
+							<pre>
+								<code>
+~# ./hello
+Hello world !
+								</code>
+							</pre>
+							<p>If you got this far, your complier works fine.</p>
+						</div>
+					</section>
+					<hr class="major" style="margin-top: 0px">
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Content</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">Generic</a></li>
+										<li><a href="about.html">About</a></li>
+										<li><a href="kali.html">Kali Linux</a></li>
+										<li>
+											<span class="opener">CTF</span>
+											<ul>
+												<li><a href="#">Mr. Robot</a></li>
+												<li><a href="#">Info_institude</a></li>
+												<li><a href="#">Maze</a></li>
+												<li><a href="#">Behemoth</a></li>
+												<li><a href="#">Breach_1</a></li>
+												<li><a href="#">Breach_2</a></li>
+											</ul>
+										</li>
+										<li><a href="#">Project_1</a></li>
+										<li><a href="#">Project_2</a></li>
+										<li><a href="#">Project_3</a></li>
+										<li><a href="#">Project_4</a></li>
+										<li>
+											<span class="opener">Cross_compiling</span>
+											<ul>
+												<li><a href="compiler_setup.html">Compiler_setup</a></li>
+												<li><a href="bash_compiling.html">Bash_compiling</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Network_Sec</span>
+											<ul>
+												<li><a href="#">Nmap</a></li>
+												<li><a href="#">Uniscan</a></li>
+												<li><a href="#">Malicious_Network</a></li>
+												<li><a href="#">WPA2_Bruteforce</a></li>
+												<li><a href="#">Free_Wifi</a></li>
+												<li><a href="#">beEF</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Metasploit</span>
+											<ul>
+												<li><a href="#">Armitage</a></li>
+												<li><a href="#">Veil_Evasion</a></li>
+												<li><a href="#">Meterpreter</a></li>
+												<li><a href="#">Post_Exploitation</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

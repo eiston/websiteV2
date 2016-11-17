@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Bash Compile</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+						<section>
+							<div class="content">
+								<header>
+									<h2>Bash_Compiling</h2>
+									<p>Vulnerable Bash for security testing</p>
+								</header>
+								<p>Warning! this tutorial is for building Bash version 4.2, which is vulnerable to shell shock. It is for security testing purposes only. Any linux system should have the newest version of bash pre-installed</p>
+								<ul class="actions">
+									<li><a href="http://www.cvedetails.com/cve/CVE-2014-6271/" class="button">Shell shock</a></li>
+								</ul>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<h3>Creating Workbench</h3>
+								<p>This is very useful for cleaner work, it is highly recommanded</p>
+								<pre>
+									<code>
+$ mkdir -pv ~/workbench/bash
+$ cd workbench/bash
+$ mkdir src
+$ mkdir build
+$ cd src
+									</code>
+								</pre>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<h3>Gather the Sources</h3>
+								<p>Lets download and extract the sources in the src directory, the patch fixes error in make</p>
+								<pre>
+									<code>
+$ wget http://ftp.gnu.org/gnu/bash/bash-4.2.tar.gz
+$ tar -pxzf bash-4.2.tar.gz
+$ wget http://www.linuxfromscratch.org/patches/downloads/bash/bash-4.2-fixes-12.patch
+									</code>
+								</pre>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<h3>Build the Environment</h3>
+								<p>Set up enironment variables to make the process smoother</p>
+								<pre>
+									<code>
+$ export TARGETMACH=arm-linux-gnueabi
+$ export BUILDMACH=i686-pc-linux-gnu
+$ export CROSS=arm-linux-gnueabi
+$ export CC=${CROSS}-gcc
+$ export LD=${CROSS}-ld
+$ export AS=${CROSS}-as
+									</code>
+								</pre>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<h3>Build</h3>
+								<pre>
+									<code>
+$ cd bash-4.2/
+$ patch -Np1 -i ../bash-4.2-fixes-12.patch
+$ cd ../../build/
+$ ../src/bash-4.2/./configure --prefix=/usr --without-bash-malloc --host=$TARGETMACH --build=$BUILDMACH
+$ make
+$ make DESTDIR=/home/[your_username]/workbench/bash/final install
+									</code>
+								</pre>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<h3>Checking</h3>
+								<p>cd into the final directory see if your build is done right</p>
+								<pre>
+									<code>
+$ cd ../final/usr/
+$ ls
+bin share
+$ cd bin/
+$ file bash
+bash: ELF 32-bit LSB  executable, ARM, EABI5 version 1 (SYSV), dynamically linked (uses shared libs), <br> for GNU/Linux 2.6.32, BuildID[sha1]=30bd2de8cf6afaad6c858e5c62cd3318a9b8e4ed, not stripped
+									</code>
+								</pre>
+								<p>If you see somthing similar to the result above. You probably build the bash correctly</p>
+							</div>
+						</section>
+						<hr class="major" style="margin-top: 0px">
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Content</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">Generic</a></li>
+										<li><a href="about.html">About</a></li>
+										<li><a href="#">Kali Linux</a></li>
+										<li>
+											<span class="opener">CTF</span>
+											<ul>
+												<li><a href="#">Mr. Robot</a></li>
+												<li><a href="#">Info_institude</a></li>
+												<li><a href="#">Maze</a></li>
+												<li><a href="#">Behemoth</a></li>
+												<li><a href="#">Breach_1</a></li>
+												<li><a href="#">Breach_2</a></li>
+											</ul>
+										</li>
+										<li><a href="#">Project_1</a></li>
+										<li><a href="#">Project_2</a></li>
+										<li><a href="#">Project_3</a></li>
+										<li><a href="#">Project_4</a></li>
+										<li>
+											<span class="opener">Cross_compiling</span>
+											<ul>
+												<li><a href="compiler_setup.html">Compiler_setup</a></li>
+												<li><a href="bash_compiling.html">Bash_compiling</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Network_Sec</span>
+											<ul>
+												<li><a href="#">Nmap</a></li>
+												<li><a href="#">Uniscan</a></li>
+												<li><a href="#">Malicious_Network</a></li>
+												<li><a href="#">WPA2_Bruteforce</a></li>
+												<li><a href="#">Free_Wifi</a></li>
+												<li><a href="#">beEF</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Metasploit</span>
+											<ul>
+												<li><a href="#">Armitage</a></li>
+												<li><a href="#">Veil_Evasion</a></li>
+												<li><a href="#">Meterpreter</a></li>
+												<li><a href="#">Post_Exploitation</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+						</div>
+					</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
